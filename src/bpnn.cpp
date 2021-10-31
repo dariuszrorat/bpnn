@@ -122,7 +122,7 @@ BPNN::BPNN(byte inputs, byte hidden, byte outputs)
     this->wi = this->makeMatrix(this->ni, this->nh, 0.0);
     this->wo = this->makeMatrix(this->nh, this->no, 0.0);
 
-    srand(millis());
+    randomSeed(millis());
     
     for (byte i = 0; i < this->ni; i++)
     {
