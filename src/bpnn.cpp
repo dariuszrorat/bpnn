@@ -2,10 +2,12 @@
  * Translation of python Back-Propagation Neural Network
  * http://arctrix.com/nas/python/bpnn.py
  */
+ 
 #include <math.h>
 #include <EEPROM.h>
 
 #include "bpnn.h"
+#include "Arduino.h" 
 
 float BPNN::randValue(float min, float max)
 {
@@ -120,6 +122,8 @@ BPNN::BPNN(byte inputs, byte hidden, byte outputs)
     this->wi = this->makeMatrix(this->ni, this->nh, 0.0);
     this->wo = this->makeMatrix(this->nh, this->no, 0.0);
 
+    srand(millis());
+    
     for (byte i = 0; i < this->ni; i++)
     {
         for (byte j = 0; j < this->nh; j++)
