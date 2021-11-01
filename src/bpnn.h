@@ -35,7 +35,7 @@ class BPNN
         BPNN(byte inputs, byte hidden, byte outputs);
         
         float* compute(float* inputs);        
-        void train(float** patterns, float** targets, int numpatterns, int iterations, float desired_error, float learningrate, float momentum);
+        void train(float** patterns, float** targets, int numpatterns, int iterations, float desired_error, float learningrate, float momentum, int *enditerations, float *enderror);
 
         void load();
         void save();

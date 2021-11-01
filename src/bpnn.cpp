@@ -177,7 +177,7 @@ float* BPNN::compute(float* inputs)
     return this->ao;
 }
 
-void BPNN::train(float** patterns, float** targets, int numpatterns, int iterations, float desired_error, float learningrate, float momentum)
+void BPNN::train(float** patterns, float** targets, int numpatterns, int iterations, float desired_error, float learningrate, float momentum, int *enditerations, float *enderror)
 {
     float error;
     float* pattern;
@@ -194,7 +194,8 @@ void BPNN::train(float** patterns, float** targets, int numpatterns, int iterati
             this->compute(pattern);
             error += this->backpropagate(target, learningrate, momentum);                                    
         }        
-        
+        *enderror = error;
+        *enditerations = i;
         if (error < desired_error)
         {
             break;    

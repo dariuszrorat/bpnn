@@ -9,13 +9,14 @@ float ** targets;
 float* input = new float[2];
 float* output;
 int y;
+int endepochs;
+float enderror;
 
 BPNN nn = BPNN(2, 4, 1);
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  randomSeed(analogRead(3));
 
   patterns = new float* [4];
   targets = new float* [4];
@@ -43,10 +44,12 @@ void setup() {
   targets[3][0] = 0;
 
   Serial.println("NETWORK TRAINING...");  
-  nn.train(patterns, targets, 4, 1000, 0.001, 0.5, 0.1);
+  nn.train(patterns, targets, 4, 1000, 0.001, 0.5, 0.1, &endepochs, &enderror);
   
   float* out;
   Serial.println("NETWORK TRAINING ENDED.");
+  Serial.println("EPOCHS: " + String(endepochs));
+  Serial.println("ERROR: " + String(enderror));
   out = nn.compute(patterns[0]);
   Serial.println(out[0]);
   out = nn.compute(patterns[1]);
